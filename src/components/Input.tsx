@@ -2,7 +2,7 @@ import { ForwardedRef, forwardRef, useId } from 'react';
 
 type Props = {
 	label: string;
-	type?: string;
+	type: string;
 	className?: string;
 };
 

@@ -1,14 +1,14 @@
 type Props = {
 	children: string | JSX.Element | JSX.Element[];
-	// type: string;
-	bgColor: string;
-	textColor: string;
-	className: string;
+	type: 'button' | 'submit' | 'reset';
+	bgColor?: string;
+	textColor?: string;
+	className?: string;
 };
 
 function Button({
 	children,
-	// type = 'button',
+	type = 'button',
 	bgColor = 'bg-blue-500',
 	textColor = 'text-white',
 	className = '',
@@ -16,6 +16,7 @@ function Button({
 }: Props) {
 	return (
 		<button
+			type={type}
 			className={`px-4 py-2 rounded-lg ${bgColor} ${textColor} ${className}`}
 			{...props}
 		>
