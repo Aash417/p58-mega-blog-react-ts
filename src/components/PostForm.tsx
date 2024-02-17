@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, Input, RTE, Select } from './index';
 import { useNavigate } from 'react-router-dom';
-import { default as AppwriteService } from '../appwrite/config';
 import { useAppSelector } from '../app/hook';
+import { default as AppwriteService } from '../appwrite/config';
+import { Button, Input, RTE, Select } from './index';
 
 function PostForm({ post }) {
 	const { register, handleSubmit, watch, setValue, control, getValues } =

@@ -83,12 +83,12 @@ class Service {
 
 	async getPost(slug: string) {
 		try {
-			await this.databases.getDocument(
-				conf.appwriteDatabaseId,
-				conf.appwriteCollectionId,
-				slug
-			);
-			return true;
+		return await this.databases.getDocument(
+			conf.appwriteDatabaseId,
+			conf.appwriteCollectionId,
+			slug
+		);
+			
 		} catch (error) {
 			console.log('appwrite sevice : getPost error : ', error);
 			return false;
