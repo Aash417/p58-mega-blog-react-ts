@@ -2,10 +2,14 @@
 import conf from '../conf/conf';
 import { Client, Account, ID } from 'appwrite';
 
-type input = {
+type signUpType = {
 	email: string;
 	password: string;
 	name?: string;
+};
+export type loginType = {
+	email: string;
+	password: string;
 };
 
 class AuthService {
@@ -19,7 +23,7 @@ class AuthService {
 		this.account = new Account(this.client);
 	}
 
-	async createAccount({ email, password, name }: input) {
+	async createAccount({ email, password, name }: signUpType) {
 		try {
 			const userAccount = await this.account.create(
 				ID.unique(),
@@ -38,9 +42,9 @@ class AuthService {
 		}
 	}
 
-	async login({ email, password }: input) {
+	async login({ email, password }: loginType) {
 		try {
-			await this.account.createEmailSession(email, password);
+			return await this.account.createEmailSession(email, password);
 		} catch (error) {
 			throw error;
 		}
@@ -57,7 +61,7 @@ class AuthService {
 
 	async logout() {
 		try {
-			await this.account.deleteSessions();
+			return await this.account.deleteSessions();
 		} catch (error) {
 			console.log('appwrite sevice : logout error : ', error);
 		}

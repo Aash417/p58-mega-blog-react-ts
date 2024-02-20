@@ -1,15 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { loginType } from '../appwrite/auth';
 
 // Define a type for the slice state
 interface CounterState {
 	status: boolean;
-	userData: any;
+	userData: loginType;
 }
 
 // Define the initial state using that type
 const initialState: CounterState = {
 	status: false,
-	userData: null,
+	userData: { email: '', password: '' },
 };
 
 export const counterSlice = createSlice({

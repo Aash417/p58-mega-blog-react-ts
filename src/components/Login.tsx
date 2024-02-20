@@ -12,18 +12,27 @@ function Login() {
 	const { register, handleSubmit } = useForm();
 	const [error, setError] = useState<string>('');
 
-	const login = async (data) => {
+	const login = async (data: { email: string; password: string }) => {
 		console.log(data);
 		setError('');
 		try {
 			const session = await authservice.login(data);
 			if (session) {
-				const userData = await authservice.getCurrentUser();
+				const userData = authservice.getCurrentUser();
 				if (userData) dispatch(authLogin(userData));
 				navigate('/');
 			}
+			// session.then(
+			// 	function (response) {
+			// 		console.log(response); // Success
+			// 	},
+			// 	function (error) {
+			// 		console.log(error); // Failure
+			// 	}
+			// );
 		} catch (err) {
 			setError(err.message);
+			console.log(err);
 		}
 	};
 
