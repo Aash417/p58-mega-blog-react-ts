@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import { default as AppwriteService } from '../appwrite/config';
 import { Container, PostCard } from '../components/index';
 
 function AllPosts() {
-	const [posts, setPosts] = useState<Array<string>>([]);
+	const [posts, setPosts] = useState<Array<Document>>([]);
+	const id = useId();
+
 	useEffect(() => {
 		AppwriteService.getPosts([]).then((post) => setPosts(post.documents));
 	}, []);
@@ -13,7 +15,12 @@ function AllPosts() {
 			<Container>
 				<div className='flex flex-wrap'>
 					{posts.map((post) => (
-						<PostCard key={post.$id} post={post} />
+						<PostCard
+							$id={post.userId}
+							featuredImage={post.featuredImage}
+							key={id}
+							title={post.title}
+						/>
 					))}
 				</div>
 			</Container>

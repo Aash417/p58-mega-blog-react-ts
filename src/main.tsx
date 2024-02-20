@@ -1,13 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+	RouterProvider,
+	createBrowserRouter,
+	useRouteError,
+} from 'react-router-dom';
 import { AddPost, AllPosts, EditPost, Home, Post } from '../src/pages/index';
 import App from './App.jsx';
+import { store } from './app/store';
 import { Login, Protected, Signup } from './components/index';
 import './index.css';
-import { store } from './app/store';
 
+function MyErrorComponent() {
+	const error = useRouteError();
+
+	return (
+		<div>
+			<h1>Error!</h1>
+			<p>An error occurred: {error.message}</p>
+			<p>Status code: {error.statusText}</p>
+			{/* Add specific error handling or retry logic here */}
+		</div>
+	);
+}
 const router = createBrowserRouter([
 	{
 		path: '/',
@@ -60,6 +76,9 @@ const router = createBrowserRouter([
 			{
 				path: '/post/:slug',
 				element: <Post />,
+			},
+			{
+				element: <MyErrorComponent />,
 			},
 		],
 	},
