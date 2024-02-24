@@ -101,7 +101,7 @@ export class Service {
 			);
 		} catch (error) {
 			console.log('Appwrite service :: getPost :: error', error);
-			return false;
+			throw error;
 		}
 	}
 
@@ -129,7 +129,7 @@ export class Service {
 			);
 		} catch (error) {
 			console.log('Appwrite service :: uploadFile :: error', error);
-			return false;
+			throw error;
 		}
 	}
 
@@ -139,12 +139,14 @@ export class Service {
 			return true;
 		} catch (error) {
 			console.log('Appwrite service :: deleteFile :: error', error);
-			return false;
+			throw error;
 		}
 	}
 
-	getFilePreview(fileId: string) {
-		return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
+	getFilePreview(fileId?: string) {
+		if (fileId)
+			return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
+		else return null;
 	}
 }
 

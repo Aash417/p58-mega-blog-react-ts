@@ -66,6 +66,10 @@ class AuthService {
 			console.log('appwrite sevice : logout error : ', error);
 		}
 	}
+	async getUserId() {
+		const user = await this.getCurrentUser();
+		return user ? user.$id : null;
+	}
 }
 
 const authservice = new AuthService();

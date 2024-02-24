@@ -1,14 +1,16 @@
-import { useState } from 'react';
 import { Container, PostForm } from '../components/index';
 
 function AddPost() {
-	const [posts, setPosts] = useState<Array<Document>>([]);
-
-
 	return (
 		<div className='py-8'>
+			<div>
+				<h1 className=' text-[2rem] md:text-[2.5rem] text-center font-semibold'>
+					Add Post
+				</h1>
+			</div>
+
 			<Container>
-				<PostForm post={posts} />
+				<PostForm post={undefined} />
 			</Container>
 		</div>
 	);
