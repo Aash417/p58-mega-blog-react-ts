@@ -32,9 +32,9 @@ function Home() {
 					{posts &&
 						posts.map((post) => (
 							<PostCard
-								$id={post.userId}
+								$id={post.$id}
 								featuredImage={post.featuredImage}
-								key={id}
+								key={post.$id}
 								title={post.title}
 							/>
 						))}

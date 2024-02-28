@@ -49,7 +49,7 @@ function PostForm({ post }) {
 				});
 
 				if (dbPost) {
-					navigate(`/post/${dbPost.$id}`);
+					navigate(`/post/${dbPost.slug}`);
 				}
 			}
 		}
@@ -97,12 +97,14 @@ function PostForm({ post }) {
 						});
 					}}
 				/>
-				<RTE
-					label='Content :'
-					name='content'
-					control={control}
-					defaultValue={getValues('content')}
-				/>
+				<div className=''>
+					<RTE
+						label='Content :'
+						name='content'
+						control={control}
+						defaultValue={getValues('content')}
+					/>
+				</div>
 			</div>
 			<div className='w-1/3 px-2'>
 				<Input

@@ -6,6 +6,7 @@ type Props = {
 	title: string;
 	featuredImage: string;
 };
+
 function PostCard({ $id, title, featuredImage }: Props) {
 	return (
 		<Link to={`/post/${$id}`}>
